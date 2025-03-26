@@ -13,3 +13,12 @@ output "k8s_join_command" {
   value       = file("./k8s_join_cmd.sh")
 }
 
+output "master_instance_id" {
+  description = "instance id of the k8s master node"
+  value       = aws_instance.k8s_master.id
+}
+
+output "worker_instance_id" {
+  description = "instance id of the k8s worker node"
+  value       = aws_instance.k8s_worker.id
+}
