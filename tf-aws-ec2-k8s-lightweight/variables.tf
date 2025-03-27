@@ -22,3 +22,8 @@ variable "instance_tags" {
     Project     = "k8s-cluster-project-name"
   }
 }
+
+variable "ami_id" {
+  description = "ami id to launch the ec2 instance"
+  type        = string
+}
