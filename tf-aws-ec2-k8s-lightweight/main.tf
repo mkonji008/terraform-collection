@@ -61,9 +61,12 @@ resource "aws_instance" "k8s_master" {
 
   user_data = file("userdata/master.sh")
 
-  tags = {
-    Name = "k8s-master"
-  }
+ tags = merge(
+    var.instance_tags,
+    {
+      Name = "k8s-master"
+    }
+  )
 
   provisioner "remote-exec" {
     inline = [
@@ -96,9 +99,12 @@ resource "aws_instance" "k8s_worker" {
 
   user_data = file("userdata/worker.sh")
 
-  tags = {
-    Name = "k8s-worker"
-  }
+ tags = merge(
+    var.instance_tags,
+    {
+      Name = "k8s-worker"
+    }
+  )
 
   provisioner "remote-exec" {
     inline = [
