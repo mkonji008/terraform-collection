@@ -25,7 +25,7 @@
        type        = "ssh"
        host        = self.public_ip
        user        = "ec2-user"
-       private_key = file("~/.ssh/id_rsa")  # Replace with the correct path to your private key
+       private_key = file("~/.ssh/id_rsa")  # double check path to private key
      }
      ```
    - Ensure that the private key file has the correct permissions and is accessible by Terraform. You can check permissions using the command:
@@ -36,21 +36,21 @@
 3. **Region**:
    - By default, the region is set to `us-west-2`. If you'd like to change the region, update the `region` variable in `terraform.tfvars`:
      ```hcl
-     region = "us-west-2"  # Replace with the AWS region you want to use
+     region = "us-west-2"  # check region for deployment
      ```
    - Alternatively, you can override the region in `terraform.tfvars` or set it as an environment variable.
 
 4. **Instance Type**:
    - The default instance type is `t2.micro`, which falls within the AWS free tier. If you'd like to change the instance type (for example, to `t3.medium`), update the `instance_type` variable in `terraform.tfvars`:
      ```hcl
-     instance_type = "t2.micro"  # Adjust if needed
+     instance_type = "t2.micro"  # default is free tier w/t2.micro but if not enough horse power bump it up... just be wary of costs.
      ```
    - This will configure the Kubernetes master and worker nodes with the specified instance type.
 
 5. **AMI ID**:
    - The AMI ID for the EC2 instances is also customizable. If you want to use a specific AMI, you can change the `ami_id` variable in `terraform.tfvars`:
      ```hcl
-     ami_id = "ami-0d8f6eb4f641d4849"  # Replace with the AMI ID of your choice
+     ami_id = "ami-0d8f6eb4f641d4849"  # default is amazon linux 2..  if you change this you'll need to modify the master/worker scripts to accommodate.
      ```
 
 6. **Instance Tags**:
@@ -58,7 +58,7 @@
      ```hcl
      instance_tags = {
        Name        = "k8s-inst-name"
-       Environment = "dev"  # Change this based on your environment (dev, qa, prod)
+       Environment = "dev"  # update accordingly
        Project     = "k8s-cluster-prj-name"
      }
      ```
