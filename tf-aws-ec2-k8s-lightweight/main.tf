@@ -53,7 +53,7 @@ resource "aws_security_group" "k8s_sg" {
 }
 
 resource "aws_instance" "k8s_master" {
-  ami           = "ami-0c55b159cbfafe1f0" # Amazon Linux 2
+  ami           = var.ami_id
   instance_type = var.instance_type
   subnet_id     = aws_subnet.k8s_subnet.id
   security_groups = [aws_security_group.k8s_sg.name]
@@ -88,7 +88,7 @@ resource "aws_instance" "k8s_master" {
 }
 
 resource "aws_instance" "k8s_worker" {
-  ami           = "ami-0c55b159cbfafe1f0"
+  ami           = var.ami_id
   instance_type = var.instance_type
   subnet_id     = aws_subnet.k8s_subnet.id
   security_groups = [aws_security_group.k8s_sg.name]
